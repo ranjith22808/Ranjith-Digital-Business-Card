@@ -1,14 +1,18 @@
 const CACHE_NAME = 'ranjith-v1';
-const assets = ['/', '/index.html'];
+const assets = ['./', './index.html', './profile.jpg'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(assets))
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(assets);
+    })
   );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => response || fetch(event.request))
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
   );
 });
