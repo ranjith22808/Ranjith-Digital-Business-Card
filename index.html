@@ -215,56 +215,24 @@
   </div>
 
   <script>
-    // 1. Direct WhatsApp Share Logic
-    function sendDirectWA() {
-      const numInput = document.getElementById('targetNumber');
-      const num = numInput.value;
-      if (!num || num.length < 10) {
-        alert("Please enter a valid 10-digit mobile number.");
-        return;
-      }
-      
-      const cleanNum = num.replace(/\D/g, '');
-      const finalNum = cleanNum.startsWith('91') ? cleanNum : '91' + cleanNum;
-      
-      const message = encodeURIComponent("Hi, check out my Digital Business Card here: https://ranjithrk.netlify.app/");
-      window.open(`https://wa.me/${finalNum}?text=${message}`, '_blank');
-    }
+  // WhatsApp & Share Logic
+  function sendDirectWA() {
+    const num = document.getElementById('targetNumber').value;
+    if (!num) return alert("Enter a number");
+    const finalNum = num.replace(/\D/g, '').startsWith('91') ? num : '91' + num;
+    window.open(`https://wa.me/${finalNum}?text=Check%20out%20my%20card:%20https://ranjithrk.netlify.app/`, '_blank');
+  }
 
-    // 2. Native Share Logic
-    function shareNative() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Ranjithkumar R - Digital Card',
-          text: 'Save my contact and check my services:',
-          url: 'https://ranjithrk.netlify.app/'
-        });
-      } else {
-        window.open(`https://wa.me/?text=Check%20out%20my%20Digital%20Business%20Card:%20https://ranjithrk.netlify.app/`, '_blank');
-      }
-    }
+  function shareNative() {
+    navigator.share({ title: 'Ranjithkumar R', url: 'https://ranjithrk.netlify.app/' });
+  }
 
-    // 3. Improved PWA Installation Logic
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        const swCode = `
-          const CACHE_NAME = 'ranjith-v1';
-          const urlsToCache = [window.location.href];
-          self.addEventListener('install', (event) => {
-            event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache)));
-          });
-          self.addEventListener('fetch', (event) => {
-            event.respondWith(caches.match(event.request).then((response) => response || fetch(event.request)));
-          });
-        `;
-        const blob = new Blob([swCode], { type: 'text/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-        
-        navigator.serviceWorker.register(swUrl).then((registration) => {
-          console.log('Service Worker registered');
-        }).catch((error) => {
-          console.log('SW registration failed:', error);
-        });
-      });
-    }
-  </script>
+  // STANDARD PWA REGISTRATION (Required for Install)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("Service Worker Registered"))
+        .catch(err => console.log("Register Failed", err));
+    });
+  }
+</script>
