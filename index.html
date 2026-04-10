@@ -14,7 +14,6 @@
       --bg-light: #cffafe;
       --text-dark: #1a1a1a;
       --accent-green: #25d366;
-      --accent-blue: #34b7f1;
     }
 
     * { box-sizing: border-box; }
@@ -22,7 +21,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #f3f4f6;
+      background-color: var(--bg-light); /* Matched to the app background */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -31,17 +30,16 @@
 
     .phone-container {
       width: 100%;
-      max-width: 400px;
-      height: 95vh;
+      max-width: 450px;
+      height: 100vh;
       background: var(--bg-light);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-      border: 8px solid #1a1a1a;
-      border-radius: 40px;
+      /* Border removed as requested */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .shape-top {
@@ -66,70 +64,75 @@
       z-index: 2;
       width: 100%;
       text-align: center;
-      padding-top: 40px;
+      padding-top: 60px;
       overflow-y: auto;
       flex: 1;
     }
 
-    .logo-text { font-size: 24px; font-weight: 800; margin-bottom: 20px; }
+    .logo-text { font-size: 26px; font-weight: 800; margin-bottom: 25px; color: var(--text-dark); }
 
     .profile-img {
       width: 160px; height: 160px;
       border-radius: 50%;
-      border: 6px solid rgba(255,255,255,0.5);
+      border: 6px solid rgba(255,255,255,0.7);
       object-fit: cover;
       background: #ddd;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    .info-section h1 { margin: 15px 0 5px; font-size: 22px; color: var(--text-dark); }
-    .info-section .title { font-size: 16px; color: #444; margin-bottom: 5px; font-weight: 600; }
-    .info-section .contact-info { font-size: 15px; margin: 5px 0; font-weight: 700; }
+    .info-section h1 { margin: 20px 0 5px; font-size: 24px; color: var(--text-dark); }
+    .info-section .title { font-size: 16px; color: #444; margin-bottom: 8px; font-weight: 600; }
+    .info-section .contact-info { font-size: 15px; margin: 5px 0; font-weight: 700; color: #333; }
 
     .action-buttons {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin: 25px 0;
+      gap: 15px;
+      margin: 30px 0;
     }
     .action-btn {
-      width: 45px; height: 45px;
+      width: 50px; height: 50px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: white; text-decoration: none; font-size: 20px;
-      transition: transform 0.2s;
+      color: white; text-decoration: none; font-size: 22px;
+      transition: 0.3s;
     }
-    .action-btn:hover { transform: scale(1.1); }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     .bg-call { background: #00b09b; }
-    .bg-map { background: #d1d5db; color: #333; }
+    .bg-map { background: #9ca3af; }
     .bg-wa { background: #25D366; }
     .bg-mail { background: #ff5252; }
     .bg-web { background: #3b8ddb; }
 
-    .company-name { font-size: 20px; font-weight: 800; margin-top: 20px; }
-    .company-addr { font-size: 14px; color: #555; margin-bottom: 15px; }
+    .company-name { font-size: 22px; font-weight: 800; margin-top: 25px; color: var(--text-dark); }
+    .company-addr { font-size: 14px; color: #555; margin-bottom: 25px; }
 
+    /* Direct Share Input Box */
     .share-box {
       background: white;
-      border: 1px solid #ddd;
-      border-radius: 20px;
+      border: 1px solid #eee;
+      border-radius: 25px;
       display: flex;
-      width: 240px;
-      margin: 0 auto 20px;
-      padding: 5px 15px;
+      width: 280px;
+      margin: 0 auto 30px;
+      padding: 8px 15px;
       align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .share-box input { border: none; width: 100%; outline: none; font-size: 13px; color: #666; }
-    .share-box button { background: none; border: none; color: #25D366; font-weight: bold; cursor: pointer; white-space: nowrap; }
+    .share-box input { border: none; width: 100%; outline: none; font-size: 14px; padding-left: 5px; }
+    .share-box button { background: none; border: none; color: #25D366; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px; }
 
     .social-bar {
-      width: 100%; padding: 10px 0 20px;
-      display: flex; justify-content: center; gap: 15px;
+      width: 100%; padding: 10px 0 30px;
+      display: flex; justify-content: center; gap: 20px;
     }
     .social-icon {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 45px; height: 45px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 18px; text-decoration: none;
+      color: white; font-size: 20px; text-decoration: none;
+      transition: 0.3s;
     }
+    .social-icon:hover { transform: scale(1.1); }
 
     .fb { background: #3b5998; }
     .ig { background: #e1306c; }
@@ -137,19 +140,20 @@
 
     .bottom-nav {
       width: 100%;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      padding: 15px 0;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      padding: 18px 0;
+      border-top: 1px solid rgba(0,0,0,0.05);
       z-index: 3;
     }
     .nav-item {
       text-decoration: none; color: #333; font-size: 11px; font-weight: bold;
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
       cursor: pointer;
     }
-    .nav-item i { font-size: 18px; }
+    .nav-item i { font-size: 20px; }
   </style>
 </head>
 <body>
@@ -172,7 +176,7 @@
 
       <div class="action-buttons">
         <a href="tel:+919444122808" class="action-btn bg-call"><i class="fas fa-phone"></i></a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Matisha+Infotec+Kullanchavadi" target="_blank" class="action-btn bg-map"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="https://maps.app.goo.gl/YourLocationID" target="_blank" class="action-btn bg-map"><i class="fas fa-map-marker-alt"></i></a>
         <a href="https://wa.me/919444122808" target="_blank" class="action-btn bg-wa"><i class="fab fa-whatsapp"></i></a>
         <a href="mailto:ranjith22808@gmail.com" class="action-btn bg-mail"><i class="fas fa-envelope"></i></a>
         <a href="http://www.rktec.in" target="_blank" class="action-btn bg-web"><i class="fas fa-globe"></i></a>
@@ -182,8 +186,8 @@
       <div class="company-addr">Kullanchavadi, Cuddalore - 607301</div>
 
       <div class="share-box">
-        <input type="text" value="ranjithrk.netlify.app" readonly>
-        <button onclick="shareLink()"><i class="fab fa-whatsapp"></i> Share</button>
+        <input type="number" id="targetNumber" placeholder="Enter Mobile Number">
+        <button onclick="sendDirectWA()"><i class="fab fa-whatsapp"></i> SEND</button>
       </div>
 
       <div class="social-bar">
@@ -194,27 +198,44 @@
     </div>
 
     <div class="bottom-nav">
-      <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Ranjithkumar%20R%0AORG:Matisha%20Infotec%0ATEL:+919444122808%0AURL:http://www.rktec.in%0AADR;TYPE=WORK:;;Kullanchavadi%20Cuddalore%0AEND:VCARD" 
+      <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Ranjithkumar%20R%0AORG:Matisha%20Infotec%0ATEL:+919444122808%0AURL:http://www.rktec.in%0AADR;TYPE=WORK:;;No%20561%20Cuddalore%20Main%20Road,%20Kullanchavadi,%20Cuddalore%20Pin%20607301%0AEND:VCARD" 
          download="RanjithkumarR.vcf" class="nav-item">
         <i class="fas fa-download"></i>
         <span>Save to Contacts</span>
       </a>
-      <div class="nav-item" onclick="shareLink()">
+      <div class="nav-item" onclick="shareNative()">
         <i class="fas fa-share-alt"></i>
         <span>Share Link</span>
       </div>
       <a href="services.html" class="nav-item">
         <i class="fas fa-id-card"></i>
-        <span>Business Card</span>
+        <span>Services</span>
       </a>
     </div>
   </div>
 
   <script>
-    function shareLink() {
+    // Function to send your card link to a specific number typed in the box
+    function sendDirectWA() {
+      const num = document.getElementById('targetNumber').value;
+      if (!num) {
+        alert("Please enter a valid mobile number first.");
+        return;
+      }
+      
+      // Sanitizing number: removing any accidental spaces or dashes
+      const cleanNum = num.replace(/\D/g, '');
+      const finalNum = cleanNum.startsWith('91') ? cleanNum : '91' + cleanNum;
+      
+      const message = encodeURIComponent("Hi, check out my Digital Business Card here: https://ranjithrk.netlify.app/");
+      window.open(`https://wa.me/${finalNum}?text=${message}`, '_blank');
+    }
+
+    // Function for Native Phone Share (Bottom Nav)
+    function shareNative() {
       const shareData = {
         title: 'Ranjithkumar R - Digital Card',
-        text: 'Check out my Digital Business Card:',
+        text: 'Save my contact and check my services:',
         url: 'https://ranjithrk.netlify.app/'
       };
 
@@ -225,6 +246,7 @@
       }
     }
 
+    // Inline Service Worker for PWA
     if ('serviceWorker' in navigator) {
       const swCode = `
         self.addEventListener('install', (e) => self.skipWaiting());
