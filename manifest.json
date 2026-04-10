@@ -1,8 +1,7 @@
 {
   "name": "Ranjithkumar R Digital Card",
   "short_name": "Ranjith RK",
-  "description": "Digital Business Card for Matisha Infotec",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#cffafe",
   "theme_color": "#00b09b",
@@ -10,8 +9,7 @@
     {
       "src": "profile.jpg",
       "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/jpeg"
     }
   ]
 }
