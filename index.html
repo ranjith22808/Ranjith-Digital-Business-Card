@@ -218,37 +218,41 @@
   </div>
 
   <script>
-    // Lead Gen Function
-    function sendDirectWA() {
-      const num = document.getElementById('targetNumber').value;
-      if (!num) return alert("Please enter a mobile number.");
-      const cleanNum = num.replace(/\D/g, '');
-      const finalNum = cleanNum.startsWith('91') ? cleanNum : '91' + cleanNum;
-      const message = encodeURIComponent("Hi, check out my Digital Business Card here: https://ranjithrk.netlify.app/");
-      window.open(`https://wa.me/${finalNum}?text=${message}`, '_blank');
-    }
+  // Direct WhatsApp Send
+  function sendDirectWA() {
+    const num = document.getElementById('targetNumber').value;
+    if (!num) return alert("Please enter a number");
+    const finalNum = num.replace(/\D/g, '').startsWith('91') ? num : '91' + num;
+    const msg = encodeURIComponent("Hi, check out my Digital Card: https://ranjithrk.netlify.app/");
+    window.open(`https://wa.me/${finalNum}?text=${msg}`, '_blank');
+  }
 
-    // Native Social Share
-    function shareNative() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Ranjithkumar R - Digital Card',
-          url: 'https://ranjithrk.netlify.app/'
-        });
-      } else {
-        window.open(`https://wa.me/?text=Check%20out%20my%20Digital%20Business%20Card:%20https://ranjithrk.netlify.app/`, '_blank');
-      }
+  // Native Share
+  function shareNative() {
+    if (navigator.share) {
+      navigator.share({ title: 'Ranjithkumar R', url: 'https://ranjithrk.netlify.app/' });
     }
+  }
 
-    // Standard PWA Registration pointing to physical sw.js
-    if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // Using '/' ensures it registers for the whole site scope
-    navigator.serviceWorker.register('/sw.js') 
-      .then(reg => console.log('Service Worker Registered!', reg.scope))
-      .catch(err => console.log('Service Worker Failed!', err));
-  });
-}
-  </script>
+  // FORCE PWA REGISTRATION
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(reg => {
+          console.log('SW Registered at scope:', reg.scope);
+          // If a new service worker is found, force it to take over immediately
+          reg.onupdatefound = () => {
+            const installingWorker = reg.installing;
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                location.reload(); 
+              }
+            };
+          };
+        })
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+</script>
 </body>
 </html>
