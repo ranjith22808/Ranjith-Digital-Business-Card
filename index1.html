@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranjithkumar R - Digital Card</title>
+  
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Ranjithkumar R","short_name":"Ranjith RK","start_url":".","display":"standalone","background_color":"#cffafe","theme_color":"#00b09b","icons":[{"src":"https://via.placeholder.com/192","sizes":"192x192","type":"image/png"}]}'>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-light: #cffafe;
+      --text-dark: #1a1a1a;
+      --accent-green: #25d366;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-light); /* Matched to the app background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .phone-container {
+      width: 100%;
+      max-width: 450px;
+      height: 100vh;
+      background: var(--bg-light);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Border removed as requested */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .shape-top {
+      position: absolute;
+      top: -50px; left: -50px;
+      width: 250px; height: 250px;
+      background: #fef3c7;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .shape-right {
+      position: absolute;
+      top: 150px; right: -80px;
+      width: 200px; height: 200px;
+      background: rgba(209, 213, 219, 0.6);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      padding-top: 60px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .logo-text { font-size: 26px; font-weight: 800; margin-bottom: 25px; color: var(--text-dark); }
+
+    .profile-img {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.7);
+      object-fit: cover;
+      background: #ddd;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .info-section h1 { margin: 20px 0 5px; font-size: 24px; color: var(--text-dark); }
+    .info-section .title { font-size: 16px; color: #444; margin-bottom: 8px; font-weight: 600; }
+    .info-section .contact-info { font-size: 15px; margin: 5px 0; font-weight: 700; color: #333; }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .action-btn {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; text-decoration: none; font-size: 22px;
+      transition: 0.3s;
+    }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    .bg-call { background: #00b09b; }
+    .bg-map { background: #9ca3af; }
+    .bg-wa { background: #25D366; }
+    .bg-mail { background: #ff5252; }
+    .bg-web { background: #3b8ddb; }
+
+    .company-name { font-size: 22px; font-weight: 800; margin-top: 25px; color: var(--text-dark); }
+    .company-addr { font-size: 14px; color: #555; margin-bottom: 25px; }
+
+    /* Direct Share Input Box */
+    .share-box {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 25px;
+      display: flex;
+      width: 280px;
+      margin: 0 auto 30px;
+      padding: 8px 15px;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .share-box input { border: none; width: 100%; outline: none; font-size: 14px; padding-left: 5px; }
+    .share-box button { background: none; border: none; color: #25D366; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+    .social-bar {
+      width: 100%; padding: 10px 0 30px;
+      display: flex; justify-content: center; gap: 20px;
+    }
+    .social-icon {
+      width: 45px; height: 45px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 20px; text-decoration: none;
+      transition: 0.3s;
+    }
+    .social-icon:hover { transform: scale(1.1); }
+
+    .fb { background: #3b5998; }
+    .ig { background: #e1306c; }
+    .wa-channel { background: #25D366; }
+
+    .bottom-nav {
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 18px 0;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      z-index: 3;
+    }
+    .nav-item {
+      text-decoration: none; color: #333; font-size: 11px; font-weight: bold;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      cursor: pointer;
+    }
+    .nav-item i { font-size: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="phone-container">
+    <div class="shape-top"></div>
+    <div class="shape-right"></div>
+
+    <div class="content">
+      <div class="logo-text">Matisha Infotec</div>
+      
+      <img src="profile.jpg" alt="Ranjithkumar R" class="profile-img">
+
+      <div class="info-section">
+        <h1>Ranjithkumar R</h1>
+        <div class="title">Entrepreneur & Developer</div>
+        <div class="contact-info">+91 94441 22808</div>
+        <div class="contact-info">ranjith22808@gmail.com</div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="tel:+919444122808" class="action-btn bg-call"><i class="fas fa-phone"></i></a>
+        <a href="https://maps.app.goo.gl/YourLocationID" target="_blank" class="action-btn bg-map"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="https://wa.me/919444122808" target="_blank" class="action-btn bg-wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:ranjith22808@gmail.com" class="action-btn bg-mail"><i class="fas fa-envelope"></i></a>
+        <a href="http://www.rktec.in" target="_blank" class="action-btn bg-web"><i class="fas fa-globe"></i></a>
+      </div>
+
+      <div class="company-name">Sivasakthi Medical</div>
+      <div class="company-addr">Kullanchavadi, Cuddalore - 607301</div>
+
+      <div class="share-box">
+        <input type="number" id="targetNumber" placeholder="Enter Mobile Number">
+        <button onclick="sendDirectWA()"><i class="fab fa-whatsapp"></i> SEND</button>
+      </div>
+
+      <div class="social-bar">
+        <a href="https://facebook.com/ranjith22808" target="_blank" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://whatsapp.com/channel/0029Va60NA92f3ECI0PY963b" target="_blank" class="social-icon wa-channel"><i class="fas fa-bullhorn"></i></a>
+        <a href="https://instagram.com/ranjith22808" target="_blank" class="social-icon ig"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Ranjithkumar%20R%0AORG:Matisha%20Infotec%0ATEL:+919444122808%0AURL:http://www.rktec.in%0AADR;TYPE=WORK:;;No%20561%20Cuddalore%20Main%20Road,%20Kullanchavadi,%20Cuddalore%20Pin%20607301%0AEND:VCARD" 
+         download="RanjithkumarR.vcf" class="nav-item">
+        <i class="fas fa-download"></i>
+        <span>Save to Contacts</span>
+      </a>
+      <div class="nav-item" onclick="shareNative()">
+        <i class="fas fa-share-alt"></i>
+        <span>Share Link</span>
+      </div>
+      <a href="services.html" class="nav-item">
+        <i class="fas fa-id-card"></i>
+        <span>Services</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+  // WhatsApp & Share Logic
+  function sendDirectWA() {
+    const num = document.getElementById('targetNumber').value;
+    if (!num) return alert("Enter a number");
+    const finalNum = num.replace(/\D/g, '').startsWith('91') ? num : '91' + num;
+    window.open(`https://wa.me/${finalNum}?text=Check%20out%20my%20card:%20https://ranjithrk.netlify.app/`, '_blank');
+  }
+
+  function shareNative() {
+    navigator.share({ title: 'Ranjithkumar R', url: 'https://ranjithrk.netlify.app/' });
+  }
+
+  // STANDARD PWA REGISTRATION (Required for Install)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("Service Worker Registered"))
+        .catch(err => console.log("Register Failed", err));
+    });
+  }
+</script>
