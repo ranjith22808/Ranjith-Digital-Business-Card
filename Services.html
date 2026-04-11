@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services - Matisha Infotec</title>
+  <title>Services - Matisha Infotec & Sivasakthi Medical</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
@@ -11,6 +11,7 @@
       --text-dark: #1a1a1a;
       --primary: #00b09b;
       --secondary: #3b8ddb;
+      --med-red: #da1b60;
     }
 
     * { box-sizing: border-box; }
@@ -46,12 +47,27 @@
     .header {
       position: relative;
       z-index: 2;
-      padding: 40px 20px 20px;
+      padding: 40px 20px 10px;
       text-align: center;
     }
 
     .header h1 { margin: 0; font-size: 26px; color: var(--text-dark); }
     .header p { margin: 5px 0; color: #555; font-weight: 600; }
+
+    .section-title {
+      position: relative;
+      z-index: 2;
+      padding: 15px 20px 5px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after { content: ""; flex: 1; height: 1px; background: #ddd; }
 
     .services-grid {
       position: relative;
@@ -59,7 +75,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      padding: 0 15px 100px;
+      padding: 10px 15px 20px;
     }
 
     .service-card {
@@ -81,27 +97,33 @@
 
     .service-card h3 {
       margin: 0 0 8px;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-dark);
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #f0f0f0;
       padding-bottom: 5px;
     }
 
     .service-card ul {
       margin: 0; padding: 0;
       list-style: none;
-      font-size: 10.5px;
+      font-size: 10px;
       color: #555;
       text-align: left;
     }
 
-    .service-card li { margin-bottom: 5px; display: flex; align-items: flex-start; gap: 4px; line-height: 1.2; }
-    .service-card li::before { content: "✓"; color: var(--primary); font-weight: bold; font-size: 10px; margin-top: 2px; }
+    .service-card li { margin-bottom: 4px; display: flex; align-items: flex-start; gap: 4px; line-height: 1.3; }
+    .service-card li::before { content: "•"; color: var(--primary); font-weight: bold; }
+
+    /* Medical Theming */
+    .medical-card { border-top: 3px solid var(--med-red); }
+    .medical-card i { background: linear-gradient(135deg, var(--med-red), #ff8a00); -webkit-background-clip: text; }
+    .medical-card h3 { color: var(--med-red); }
+    .medical-card li::before { color: var(--med-red); }
 
     .bottom-nav {
       position: fixed;
       bottom: 0; width: 100%; max-width: 450px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       display: flex; justify-content: space-around;
       padding: 15px 0;
@@ -113,8 +135,10 @@
       text-decoration: none; color: #333; font-size: 11px; font-weight: bold;
       display: flex; flex-direction: column; align-items: center; gap: 5px;
     }
-
     .nav-item i { font-size: 20px; color: var(--primary); }
+    .nav-item.med i { color: var(--med-red); }
+
+    .spacer { height: 90px; }
   </style>
 </head>
 <body>
@@ -123,10 +147,11 @@
     <div class="shape-top"></div>
 
     <div class="header">
-      <h1>Matisha Infotec</h1>
-      <p>Digital & Government Services</p>
+      <h1>Services Hub</h1>
+      <p>Matisha Infotec & Sivasakthi Medical</p>
     </div>
 
+    <div class="section-title">Matisha Infotec</div>
     <div class="services-grid">
       <div class="service-card">
         <i class="fas fa-university"></i>
@@ -134,9 +159,9 @@
         <ul>
           <li>TN Arasu E-Sevai Portal</li>
           <li>Aadhaar Enroll/Update</li>
-          <li>PAN & Voter ID</li>
-          <li>Passport & Ration Card</li>
-          <li>Birth/Death Certs</li>
+          <li>PAN New/Correction</li>
+          <li>Voter ID & Ration Card</li>
+          <li>Passport & Birth Certs</li>
         </ul>
       </div>
 
@@ -147,57 +172,87 @@
           <li>Banking Assistance</li>
           <li>Motor Insurance</li>
           <li>Paytm KYC Update</li>
-          <li>PF / EPFO Services</li>
+          <li>EPFO / PF Withdrawal</li>
+          <li>MSME / Udyam Reg</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fas fa-route"></i>
-        <h3>Travel & Tags</h3>
+        <h3>Travel & Logistics</h3>
         <ul>
           <li>Train/Bus/Flight Tkts</li>
           <li>New FASTag & Recharge</li>
-          <li>Passport Renewals</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <i class="fas fa-user-graduate"></i>
-        <h3>Edu & Career</h3>
-        <ul>
           <li>Employment Reg/Renew</li>
           <li>Competitive Exam Portal</li>
-          <li>Udyam/MSME Reg</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fas fa-print"></i>
-        <h3>Digital Printing</h3>
+        <h3>Printing & Digital</h3>
         <ul>
-          <li>WhatsApp Printing</li>
+          <li>WhatsApp Direct Print</li>
           <li>Photo & Email Print</li>
-          <li>Lamination Services</li>
+          <li>Lamination & Xerox</li>
           <li>Mobile & D2H Recharge</li>
         </ul>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" style="grid-column: span 2;">
         <i class="fas fa-seedling"></i>
-        <h3>Agri & Rural</h3>
-        <ul>
+        <h3>Agriculture & Specialized</h3>
+        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
           <li>Kissan Agri Updates</li>
           <li>Crop Insurance</li>
           <li>Rubber Stamp Making</li>
           <li>Old Age Life Certs</li>
+          <li>Land Records (Patta)</li>
+          <li>Web/PWA Development</li>
         </ul>
       </div>
     </div>
 
+    <div class="section-title" style="color: var(--med-red);">Sivasakthi Medical</div>
+    <div class="services-grid">
+      <div class="service-card medical-card">
+        <i class="fas fa-pills"></i>
+        <h3>Medicines</h3>
+        <ul>
+          <li>Generic & Allopathic</li>
+          <li>Diabetic & Heart Care</li>
+          <li>Blood Pressure Meds</li>
+          <li>Veterinary Medicines</li>
+        </ul>
+      </div>
+
+      <div class="service-card medical-card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Health Plus</h3>
+        <ul>
+          <li>Best Market Discounts</li>
+          <li>Quality Branded Drugs</li>
+          <li>Senior Citizen Support</li>
+          <li>Home Delivery Support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
     <div class="bottom-nav">
-      <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="tel:+919444122808" class="nav-item"><i class="fas fa-phone-alt"></i><span>Call</span></a>
-      <a href="https://wa.me/919444122808" class="nav-item"><i class="fab fa-whatsapp"></i><span>Chat</span></a>
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="https://wa.me/919444122808?text=I%20need%20to%20order%20medicines:" class="nav-item med">
+        <i class="fas fa-prescription"></i>
+        <span>Order Meds</span>
+      </a>
+      <a href="tel:+919444122808" class="nav-item">
+        <i class="fas fa-phone-alt"></i>
+        <span>Contact</span>
+      </a>
     </div>
   </div>
 
