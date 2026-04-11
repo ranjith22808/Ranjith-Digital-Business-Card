@@ -1,15 +1,16 @@
 {
   "name": "Ranjithkumar R Digital Card",
   "short_name": "Ranjith RK",
-  "start_url": "./index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#cffafe",
   "theme_color": "#00b09b",
   "icons": [
     {
-      "src": "profile.jpg", 
+      "src": "profile.jpg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }

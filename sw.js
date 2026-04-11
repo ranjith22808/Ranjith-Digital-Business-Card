@@ -1,10 +1,9 @@
-const CACHE_NAME = 'ranjith-card-v1';
-const assets = ['./', './index.html', './profile.jpg'];
+// Change 'v1' to 'v2' to force the browser to update
+const CACHE_NAME = 'ranjith-card-v2'; 
+const assets = ['./', './index.html', './profile.jpg', './manifest.json'];
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(assets)));
-});
-
-self.addEventListener('fetch', (e) => {
-  e.respondWith(caches.match(e.request).then((res) => res || fetch(e.request)));
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(assets))
+  );
 });
